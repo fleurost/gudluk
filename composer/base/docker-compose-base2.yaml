@@ -12,7 +12,7 @@ services:
       - CORE_PEER_ADDRESS=peer0.rs1.hospital.com:7051
       - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.rs1.hospital.com:7051
       - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.rs1.hospital.com:7051
-      - CORE_PEER_LOCALMSPID=rs1MSP
+      - CORE_PEER_LOCALMSPID=Rs1MSP
       - CORE_PEER_TLS_ENABLED=true
       - CORE_PEER_TLS_CERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/rs1.hospital.com/peers/peer0.rs1.hospital.com/tls/server.crt
       - CORE_PEER_TLS_KEY_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/rs1.hospital.com/peers/peer0.rs1.hospital.com/tls/server.key
@@ -37,7 +37,7 @@ services:
     extra_hosts:
       - "peer0.rs2.hospital.com:192.168.56.11"
       - "peer1.rs2.hospital.com:192.168.56.11"
-      - "ca_peerJabar:192.168.56.11"
+      - "ca_peerRs2:192.168.56.11"
       - "orderer.hospital.com:192.168.56.12"
     ports:
       - 7051:7051
@@ -53,7 +53,7 @@ services:
       - CORE_PEER_ADDRESS=peer1.rs1.hospital.com:7051
       - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.rs1.hospital.com:7051
       - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.rs1.hospital.com:7051
-      - CORE_PEER_LOCALMSPID=rs1MSP
+      - CORE_PEER_LOCALMSPID=Rs1MSP
       - CORE_PEER_TLS_ENABLED=true
       - CORE_PEER_TLS_CERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/rs1.hospital.com/peers/peer1.rs1.hospital.com/tls/server.crt
       - CORE_PEER_TLS_KEY_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/rs1.hospital.com/peers/peer1.rs1.hospital.com/tls/server.key
@@ -77,7 +77,7 @@ services:
     extra_hosts:
       - "peer0.rs2.hospital.com:192.168.56.11"
       - "peer1.rs2.hospital.com:192.168.56.11"
-      - "ca_peerrs2:192.168.56.11"
+      - "ca_peerRs2:192.168.56.11"
       - "orderer.hospital.com:192.168.56.12"
     ports:
       - 8051:7051

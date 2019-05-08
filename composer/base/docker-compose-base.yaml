@@ -31,7 +31,7 @@ services:
       - "peer1.rs1.hospital.com:192.168.56.10"
       - "peer0.rs2.hospital.com:192.168.56.11"
       - "peer1.rs2.hospital.com:192.168.56.11"
-      - "ca_peerrs1:192.168.56.10"
-      - "ca_peerrs2:192.168.56.11"
+      - "ca_peerRs1:192.168.56.10"
+      - "ca_peerRs2:192.168.56.11"
     ports:
       - 7050:7050

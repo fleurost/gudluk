@@ -32,7 +32,7 @@ cat << EOF > ./byfn-network-rs1.json
     "x-type": "hlfv1",
     "version": "1.0.0",
 	"client": {
-		"organization": "rs1",
+		"organization": "Rs1",
 		"connection": {
 			"timeout": {
 				"peer": {
@@ -74,8 +74,8 @@ cat << EOF > ./byfn-network-rs1.json
         }
     },
     "organizations": {
-        "rs1": {
-            "mspid": "rs1MSP",
+        "Rs1": {
+            "mspid": "Rs1MSP",
             "peers": [
                 "peer0.rs1.hospital.com",
                 "peer1.rs1.hospital.com"
@@ -84,8 +84,8 @@ cat << EOF > ./byfn-network-rs1.json
                 "ca.rs1.hospital.com"
             ]
         },
-        "rs2": {
-            "mspid": "rs2MSP",
+        "Rs2": {
+            "mspid": "Rs2MSP",
             "peers": [
                 "peer0.rs2.hospital.com",
                 "peer1.rs2.hospital.com"
@@ -170,7 +170,7 @@ cat << EOF > ./byfn-network-rs2.json
     "x-type": "hlfv1",
     "version": "1.0.0",
 	"client": {
-		"organization": "rs2",
+		"organization": "Rs2",
 		"connection": {
 			"timeout": {
 				"peer": {
@@ -212,8 +212,8 @@ cat << EOF > ./byfn-network-rs2.json
         }
     },
     "organizations": {
-        "rs1": {
-            "mspid": "rs1MSP",
+        "Rs1": {
+            "mspid": "Rs1MSP",
             "peers": [
                 "peer0.rs1.hospital.com",
                 "peer1.rs1.hospital.com"
@@ -222,8 +222,8 @@ cat << EOF > ./byfn-network-rs2.json
                 "ca.rs1.hospital.com"
             ]
         },
-        "rs2": {
-            "mspid": "rs2MSP",
+        "Rs2": {
+            "mspid": "Rs2MSP",
             "peers": [
                 "peer0.rs2.hospital.com",
                 "peer1.rs2.hospital.com"

@@ -27,13 +27,13 @@ Organizations:
         # MSPDir is the filesystem path which contains the MSP configuration
         MSPDir: crypto-config/ordererOrganizations/hospital.com/msp
 
-    - &rs1
+    - &Rs1
         # DefaultOrg defines the organization which is used in the sampleconfig
         # of the fabric.git development environment
-        Name: rs1MSP
+        Name: Rs1MSP
 
         # ID to load the MSP definition as
-        ID: rs1MSP
+        ID: Rs1MSP
 
         MSPDir: crypto-config/peerOrganizations/rs1.hospital.com/msp
 
@@ -44,13 +44,13 @@ Organizations:
             - Host: peer0.rs1.hospital.com
               Port: 7051
 
-    - &rs2
+    - &Rs2
         # DefaultOrg defines the organization which is used in the sampleconfig
         # of the fabric.git development environment
-        Name: rs2MSP
+        Name: Rs2MSP
 
         # ID to load the MSP definition as
-        ID: rs2MSP
+        ID: Rs2MSP
 
         MSPDir: crypto-config/peerOrganizations/rs2.hospital.com/msp
 
@@ -191,14 +191,14 @@ Profiles:
         Consortiums:
             SampleConsortium:
                 Organizations:
-                    - *rs1
-                    - *rs2
+                    - *Rs1
+                    - *Rs2
     TwoOrgsChannel:
         Consortium: SampleConsortium
         Application:
             <<: *ApplicationDefaults
             Organizations:
-                - *rs1
-                - *rs2
+                - *Rs1
+                - *Rs2
             Capabilities:
                 <<: *ApplicationCapabilities

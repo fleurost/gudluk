@@ -4,7 +4,7 @@ OrdererOrgs:
     Specs:
       - Hostname: orderer
 PeerOrgs:
-  - Name: rs1
+  - Name: Rs1
     Domain: rs1.hospital.com
     EnableNodeOUs: true
     Template:
@@ -12,7 +12,7 @@ PeerOrgs:
     Users:
       Count: 2
 
-  - Name: rs2
+  - Name: Rs2
     Domain: rs2.hospital.com
     EnableNodeOUs: true
     Template:
