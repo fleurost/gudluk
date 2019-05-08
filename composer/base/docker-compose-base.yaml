@@ -1,0 +1,36 @@
+
+version: '2'
+
+services:
+
+  orderer.hospital.com:
+    container_name: orderer.hospital.com
+    image: hyperledger/fabric-orderer:latest
+    environment:
+      - ORDERER_GENERAL_LOGLEVEL=INFO
+      - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
+      - ORDERER_GENERAL_GENESISMETHOD=file
+      - ORDERER_GENERAL_GENESISFILE=/var/hyperledger/orderer/genesis.block
+      - ORDERER_GENERAL_LOCALMSPID=OrdererMSP
+      - ORDERER_GENERAL_LOCALMSPDIR=/var/hyperledger/orderer/msp
+      # enabled TLS
+      - ORDERER_GENERAL_TLS_ENABLED=true
+      - ORDERER_GENERAL_TLS_PRIVATEKEY=/var/hyperledger/orderer/tls/server.key
+      - ORDERER_GENERAL_TLS_CERTIFICATE=/var/hyperledger/orderer/tls/server.crt
+      - ORDERER_GENERAL_TLS_ROOTCAS=[/var/hyperledger/orderer/tls/ca.crt]
+    working_dir: /opt/gopath/src/github.com/hyperledger/fabric
+    command: orderer
+    volumes:
+      - ../channel-artifacts:/var/hyperledger/orderer
+      - ../crypto-config/ordererOrganizations/hospital.com/orderers/orderer.hospital.com/msp:/var/hyperledger/orderer/msp
+      - ../crypto-config/ordererOrganizations/hospital.com/orderers/orderer.hospital.com/tls/:/var/hyperledger/orderer/tls
+      - orderer.hospital.com:/var/hyperledger/production/orderer
+    extra_hosts:
+      - "peer0.rs1.hospital.com:192.168.56.10"
+      - "peer1.rs1.hospital.com:192.168.56.10"
+      - "peer0.rs2.hospital.com:192.168.56.11"
+      - "peer1.rs2.hospital.com:192.168.56.11"
+      - "ca_peerrs1:192.168.56.10"
+      - "ca_peerrs2:192.168.56.11"
+    ports:
+      - 7050:7050

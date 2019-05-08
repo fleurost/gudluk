@@ -1,0 +1,11 @@
+version: '2'
+
+volumes:
+  orderer.hospital.com:
+
+services:
+  orderer.hospital.com:
+    extends:
+      file:   base/docker-compose-base.yaml
+      service: orderer.hospital.com
+    container_name: orderer.hospital.com

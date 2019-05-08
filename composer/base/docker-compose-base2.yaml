@@ -1,0 +1,83 @@
+version: '2'
+
+services:
+
+  peer0.rs1.hospital.com:
+    container_name: peer0.rs1.hospital.com
+    extends:
+      file: peer-base.yaml
+      service: peer-base
+    environment:
+      - CORE_PEER_ID=peer0.rs1.hospital.com
+      - CORE_PEER_ADDRESS=peer0.rs1.hospital.com:7051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.rs1.hospital.com:7051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.rs1.hospital.com:7051
+      - CORE_PEER_LOCALMSPID=rs1MSP
+      - CORE_PEER_TLS_ENABLED=true
+      - CORE_PEER_TLS_CERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/rs1.hospital.com/peers/peer0.rs1.hospital.com/tls/server.crt
+      - CORE_PEER_TLS_KEY_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/rs1.hospital.com/peers/peer0.rs1.hospital.com/tls/server.key
+      - CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/rs1.hospital.com/peers/peer0.rs1.hospital.com/tls/ca.crt
+      - CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/rs1.hospital.com/users/Admin@rs1.hospital.com/msp
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb0:5984
+      # The CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME and CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD
+      # provide the credentials for ledger to connect to CouchDB.  The username and password must
+      # match the username and password set for the associated CouchDB.
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME=admin
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=admin
+    volumes:
+        - /var/run/:/host/var/run/
+        - ../channel-artifacts:/var/hyperledger/channel-artifacts
+        - ../crypto-config/peerOrganizations/rs1.hospital.com/peers/peer0.rs1.hospital.com/msp:/etc/hyperledger/fabric/msp
+        - ../crypto-config/peerOrganizations/rs1.hospital.com/peers/peer0.rs1.hospital.com/tls:/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/rs1.hospital.com/peers/peer0.rs1.hospital.com/tls
+        - ../crypto-config/peerOrganizations/rs1.hospital.com/users/Admin@rs1.hospital.com/msp:/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/rs1.hospital.com/users/Admin@rs1.hospital.com/msp
+        - ../crypto-config/ordererOrganizations/hospital.com/msp/tlscacerts:/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/hospital.com/msp/tlscacerts
+        - peer0.rs1.hospital.com:/var/hyperledger/production
+    extra_hosts:
+      - "peer0.rs2.hospital.com:192.168.56.11"
+      - "peer1.rs2.hospital.com:192.168.56.11"
+      - "ca_peerJabar:192.168.56.11"
+      - "orderer.hospital.com:192.168.56.12"
+    ports:
+      - 7051:7051
+      - 7053:7053
+
+  peer1.rs1.hospital.com:
+    container_name: peer1.rs1.hospital.com
+    extends:
+      file: peer-base.yaml
+      service: peer-base
+    environment:
+      - CORE_PEER_ID=peer1.rs1.hospital.com
+      - CORE_PEER_ADDRESS=peer1.rs1.hospital.com:7051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.rs1.hospital.com:7051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.rs1.hospital.com:7051
+      - CORE_PEER_LOCALMSPID=rs1MSP
+      - CORE_PEER_TLS_ENABLED=true
+      - CORE_PEER_TLS_CERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/rs1.hospital.com/peers/peer1.rs1.hospital.com/tls/server.crt
+      - CORE_PEER_TLS_KEY_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/rs1.hospital.com/peers/peer1.rs1.hospital.com/tls/server.key
+      - CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/rs1.hospital.com/peers/peer1.rs1.hospital.com/tls/ca.crt
+      - CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/rs1.hospital.com/users/Admin@rs1.hospital.com/msp
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb1:5984
+      # The CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME and CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD
+      # provide the credentials for ledger to connect to CouchDB.  The username and password must
+      # match the username and password set for the associated CouchDB.
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME=admin
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=admin
+    volumes:
+        - /var/run/:/host/var/run/
+        - ../channel-artifacts:/var/hyperledger/channel-artifacts
+        - ../crypto-config/peerOrganizations/rs1.hospital.com/peers/peer1.rs1.hospital.com/msp:/etc/hyperledger/fabric/msp
+        - ../crypto-config/peerOrganizations/rs1.hospital.com/peers/peer1.rs1.hospital.com/tls:/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/rs1.hospital.com/peers/peer1.rs1.hospital.com/tls
+        - ../crypto-config/peerOrganizations/rs1.hospital.com/users/Admin@rs1.hospital.com/msp:/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/rs1.hospital.com/users/Admin@rs1.hospital.com/msp
+        - ../crypto-config/ordererOrganizations/hospital.com/msp/tlscacerts:/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/hospital.com/msp/tlscacerts
+        - peer1.rs1.hospital.com:/var/hyperledger/production
+    extra_hosts:
+      - "peer0.rs2.hospital.com:192.168.56.11"
+      - "peer1.rs2.hospital.com:192.168.56.11"
+      - "ca_peerrs2:192.168.56.11"
+      - "orderer.hospital.com:192.168.56.12"
+    ports:
+      - 8051:7051
+      - 8053:7053
